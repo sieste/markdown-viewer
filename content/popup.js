@@ -190,8 +190,8 @@ m.mount(document.querySelector('body'), {
       ),
 
       // advanced options
-      m('button.mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect',
-        {oncreate, onclick: events.advanced},
-        'Advanced Options')
+      // m('button.mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect',
+      //   {oncreate, onclick: events.advanced},
+      //   'Advanced Options')
     )
 })
