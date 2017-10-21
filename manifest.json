@@ -66,12 +66,20 @@
 
   "permissions": [
     "storage",
-    "file:///*"
+    "file:///*",
+    "<all_urls>"
   ],
 
   "optional_permissions": [
     "https://*/",
     "http://*/",
     "*://*/"
-  ]
+  ],
+
+  "applications": {
+    "gecko": {
+      "id": "markdown-viewer@outofindex.com",
+      "strict_min_version": "50.0"
+    }
+  }
 }
