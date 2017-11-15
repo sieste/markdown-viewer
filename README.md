@@ -12,7 +12,7 @@
 - Generates Table of Contents (TOC)
 - Settings synchronization
 - Raw and rendered markdown views
-- Open source
+- Free and Open Source
 
 
 # Compiler Options
@@ -41,6 +41,110 @@ Option          | Default | Description
 **sanitize**    | `false` | Sanitize the output. Ignore any HTML that has been input.
 
 
+<<<<<<< HEAD
+=======
+# Content Options
+
+Option          | Default | Description
+:---            | :---    | :---
+**emoji**       | `false` | Convert emoji :shortnames: into EmojiOne images
+**scroll**      | `true`  | Remember scroll position
+**toc**         | `false` | Generate Table of Contents
+**mathjax**     | `false` | Render TeX and LaTeX math blocks
+
+## Scroll
+
+- When enabled, the `scroll` option remembers the current scroll position and scrolls back to it after page load.
+- When disabled, the `scroll` option either scrolls to the top of the document or to a certain header (anchor) if a hash URL fragment is present.
+
+## TOC
+
+- Generates Table of Contents (TOC) based on the headers found in the markdown document.
+
+## MathJax
+
+The following `mathjax` delimiters are supported:
+
+- inline math: `\(math\)` and `$math$`
+- display math: `\[math\]` and `$$math$$`
+
+The following rules apply to your content when `mathjax` is enabled:
+
+- Regular dollar sign `$` in text that is not part of a math formula should be escaped: `\$`
+- Regular markdown escaping for parentheses: `\(` and `\)`, and brackets: `\[` and `\]` is not supported. MathJax will convert anything between these delimiters to math formulas, unless they are wrapped in backticks: `` `\(` `` or fenced code blocks.
+
+> The MathJax support currently works only for local file URLs and remote origins without strict *Content Security Policy (CSP)* set. For example it won't work for files hosted on GitHub.
+
+## Emoji
+
+- Emoji shortnames like: `:sparkles:` will be converted to :sparkles: using [EmojiOne][emojione] images.
+- Currently unicode symbols like `✨` and ASCII emoji like `:D` are not supported.
+
+> The Emoji support currently works only for local file URLs and remote origins without strict *Content Security Policy (CSP)* set. For example it won't work for files hosted on GitHub.
+
+
+# Advanced Options
+
+Detecting and rendering [local file URLs](#local-files) can be enabled by using the `Allow access to file URLs` option for the extension.
+
+Access to remote URLs however, needs to be enabled manually.
+
+
+## Add Origin
+
+Here is how you can enable the extension for the `https://raw.githubusercontent.com` origin:
+
+![add-origin]
+
+The origin consists of *protocol* part and *domain* part. The *protocol* can be either `https`, `http`, or a `*` to match both `https` and `http`.
+
+Enable the above origin and play around with the extension options [here][syntax].
+
+## Add All Origins
+
+In case you really want to you can enable the extension for **all** origins:
+
+![all-origins]
+
+Alternatively you can use the `Allow All` button.
+
+> Note that the remote origins should either provide a valid HTTP header (see [Header Detection](#header-detection)) and/or valid URL path (see [Path Matching](#path-matching)). Otherwise you'll have to add the origin explicitly and set its [Path Matching](#path-matching) regular expression.
+
+## Header Detection
+
+When this option is enabled the extension will check for the `text/markdown` and `text/x-markdown` *content-type* header before trying to match the path:
+
+![header-detection]
+
+## Path Matching
+
+If the header detection is disabled or a proper *content-type* header is missing, the extension will check if the URL is ending with a markdown file extension:
+
+![path-regexp]
+
+It's a simple regular expression that matches URLs ending with:
+
+- markdown file extension: `\.(?:markdown|mdown|mkdn|md|mkd|mdwn|mdtxt|mdtext|text)`
+- and optionally anchor or querystring after that: `(?:#.*|\?.*)?`
+
+> The `?:` used in `(?:match)` stands for *non-capturing group* and it's there for performance reasons.
+
+You can modify the path matching regular expression for each enabled origin individually. The settings are being updated as you type.
+
+## Remove Origin
+
+At any point click on the small `x` button next to the origin that you want to remove. This actually removes the permission itself so that the extension is no longer able to inject scripts into that origin.
+
+Note that the Chrome's consent popup shows up only when you add the origin for the first time. In case you re-add it you'll no longer see that popup. That's a Chrome thing and it's not controllable through the extension.
+
+## Refresh Origin
+
+The extension synchronizes your preferences across all your devices using Google Sync. The list of your allowed origins is being synced too, but the actual permissions that you give using the Chrome's consent popup cannot be synced.
+
+In case you've recently added a new origin on one of your devices you'll have to explicitly allow it on your other devices. The little refresh button next to each origin is used for that.
+
+
+>>>>>>> cc9c8a927eaace2facde13c897074d99a9664219
 # Markdown Syntax and Features
 
 A few files located in the [test] folder of this repo can be used to test what's possible with Markdown Viewer:
@@ -76,6 +180,8 @@ SOFTWARE.
 
 
   [chrome-store]: https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk
+  [donate]: https://img.shields.io/badge/paypal-donate-blue.svg?style=flat-square (Donate on Paypal)
+  [paypal]: https://www.paypal.me/simeonvelichkov
 
   [marked]: https://github.com/chjj/marked
   [remark]: https://github.com/wooorm/remark
@@ -105,8 +211,8 @@ SOFTWARE.
   [test-yaml]: https://raw.githubusercontent.com/simov/markdown-viewer/master/test/yaml.md
   [test-toml]: https://raw.githubusercontent.com/simov/markdown-viewer/master/test/toml.md
 
-  [file-urls]: https://i.imgur.com/eqiwzEz.png
-  [add-origin]: https://i.imgur.com/56zWesT.png
-  [all-origins]: https://i.imgur.com/GiLeftR.png
-  [header-detection]: https://i.imgur.com/EYdmbSd.png
-  [path-regexp]: https://i.imgur.com/e06U6J2.png
+  [file-urls]: https://i.imgur.com/rNS9ADW.png
+  [add-origin]: https://i.imgur.com/GnKmkRG.png
+  [all-origins]: https://i.imgur.com/4GH3EuP.png
+  [header-detection]: https://i.imgur.com/bdz3Reg.png
+  [path-regexp]: https://i.imgur.com/jSrLDAM.png
