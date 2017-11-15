@@ -17,7 +17,8 @@ var defaults = {
   header: true,
   match,
   origins: {
-    'file://': match
+    'file://': match,
+    '*://*': match,
   }
 }
 Object.keys(md).forEach((compiler) => {
@@ -78,13 +79,13 @@ chrome.storage.sync.get((res) => {
   }
 
   // reload extension bug
-  chrome.permissions.getAll((permissions) => {
-    var origins = Object.keys(res.origins || {})
-    chrome.permissions.remove({
-      origins: permissions.origins
-        .filter((origin) => origins.indexOf(origin.slice(0, -2)) === -1)
-    })
-  })
+  // chrome.permissions.getAll((permissions) => {
+  //   var origins = Object.keys(res.origins || {})
+  //   chrome.permissions.remove({
+  //     origins: permissions.origins
+  //       .filter((origin) => origins.indexOf(origin.slice(0, -2)) === -1)
+  //   })
+  // })
 
   Object.keys(md).forEach((compiler) => {
     if (!options[compiler]) {
