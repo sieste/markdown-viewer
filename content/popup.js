@@ -231,11 +231,11 @@ m.mount(document.querySelector('body'), {
       ),
 
       // advanced options
-      //m('button.mdc-button mdc-button--raised m-button', {
-      //  oncreate: oncreate.ripple,
-      //  onclick: events.advanced
-      //  },
-      //  'Advanced Options'
-      //)
+      // m('button.mdc-button mdc-button--raised m-button', {
+      //   oncreate: oncreate.ripple,
+      //   onclick: events.advanced
+      //   },
+      //   'Advanced Options'
+      // )
     )
 })
