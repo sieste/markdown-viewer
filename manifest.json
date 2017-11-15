@@ -13,8 +13,6 @@
     "default_popup": "/content/popup.html"
   },
 
-  "options_page": "/content/options.html",
-
   "background" : {
     "scripts": [
       "/vendor/marked.min.js",
@@ -26,8 +24,7 @@
       "/background/marked.js",
       "/background/remark.js",
       "/background/background.js"
-    ],
-    "persistent": false
+    ]
   },
 
   "web_accessible_resources": [
